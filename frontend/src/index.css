@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-dark);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+:root {
+  --primary-color: #4f46e5;
+  --primary-dark: #4338ca;
+  --gradient-start: #4f46e5;
+  --gradient-end: #7c3aed;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --border-color: #e5e7eb;
+  --bg-page: #f5f6fb;
+  --bg-card: #ffffff;
+  --bg-subtle: #f3f4fb;
+  --shadow-color: rgba(79, 70, 229, 0.08);
+  --success-color: #16a34a;
+  --success-bg: #f0fdf4;
+  --success-border: #bbf7d0;
+  --error-color: #dc2626;
+}
+
+body.dark-theme {
+  --text-dark: #f3f4f6;
+  --text-light: #9ca3af;
+  --border-color: #2d2f3a;
+  --bg-page: #14151f;
+  --bg-card: #1c1e2b;
+  --bg-subtle: #23253338;
+  --bg-subtle: #23253a;
+  --shadow-color: rgba(0, 0, 0, 0.35);
+  --success-bg: #052e1a;
+  --success-border: #14532d;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-button {
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.gradient-button:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.gradient-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}

@@ -1,0 +1,9 @@
+node_modules/
+.env
+*.db
+*.db-journal
+
+ml-service/.venv/
+ml-service/venv/
+ml-service/__pycache__/
+ml-service/student-mat.csv

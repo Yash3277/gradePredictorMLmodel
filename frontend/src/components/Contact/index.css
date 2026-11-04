@@ -1,0 +1,36 @@
+.contact-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.contact-card {
+  background-color: var(--bg-card);
+  border-radius: 16px;
+  padding: 22px;
+  min-width: 220px;
+  box-shadow: 0px 8px 24px var(--shadow-color);
+  border: 1px solid var(--border-color);
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  border-image-slice: 1;
+}
+
+.contact-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.contact-role {
+  font-size: 13px;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+.contact-phone {
+  font-size: 14px;
+  color: var(--primary-color);
+  margin-top: 12px;
+  font-weight: 700;
+}

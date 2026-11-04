@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int          @id @default(autoincrement())
+  name        String
+  email       String       @unique
+  password    String
+  createdAt   DateTime     @default(now())
+  predictions Prediction[]
+}
+
+model Student {
+  id                        Int          @id @default(autoincrement())
+  studyHours                Float
+  homeCondition             String
+  parentalPressure          String
+  age                       Int          @default(17)
+  sex                       String       @default("Female")
+  homeAddressType           String       @default("Urban")
+  healthStatus              Int          @default(3)
+  motherEducation           Int          @default(0)
+  fatherEducation           Int          @default(0)
+  familyRelationshipQuality Int          @default(3)
+  familyEducationalSupport  Boolean      @default(false)
+  weeklyStudyTime           Int          @default(2)
+  pastClassFailures         Int          @default(0)
+  schoolAbsences            Int          @default(0)
+  schoolEducationalSupport  Boolean      @default(false)
+  internetAccess            Boolean      @default(true)
+  wantsHigherEducation      Boolean      @default(true)
+  freeTimeAfterSchool       Int          @default(3)
+  goingOutWithFriends       Int          @default(3)
+  weekdayAlcoholConsumption Int          @default(1)
+  weekendAlcoholConsumption Int          @default(1)
+  firstTermGrade            Float        @default(0)
+  secondTermGrade           Float        @default(0)
+  createdAt                 DateTime     @default(now())
+  predictions               Prediction[]
+}
+
+model Prediction {
+  id        Int      @id @default(autoincrement())
+  score     Float
+  grade     String
+  batchId   String?
+  createdAt DateTime @default(now())
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  studentId Int
+  student   Student @relation(fields: [studentId], references: [id])
+}

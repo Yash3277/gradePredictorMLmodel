@@ -21,10 +21,11 @@ const JWT_SECRET = process.env.JWT_SECRET
 const ML_SERVICE_URL = process.env.ML_SERVICE_URL
 
 const getGradeFromScore = score => {
-  if (score >= 90) return 'A'
-  if (score >= 80) return 'B'
-  if (score >= 70) return 'C'
-  if (score >= 60) return 'D'
+  if (score >= 90) return 'S'
+  if (score >= 80) return 'A'
+  if (score >= 70) return 'B'
+  if (score >= 60) return 'C'
+  if (score >= 50) return 'D'
   return 'F'
 }
 
@@ -226,6 +227,7 @@ app.get('/history/', authenticateToken, async (request, response) => {
     where: {userId},
     orderBy: {createdAt: 'desc'},
     include: {student: true},
+    take: 6
   })
 
   const formattedList = predictions.map(item => ({

@@ -15,8 +15,8 @@ from sklearn.tree import DecisionTreeRegressor
 DATA_FILE = "student-mat.csv"
 MODEL_FILE = "model.joblib"
 RANDOM_STATE = 42
-USE_PAST_GRADES = False
-ALL_FEATURES = [
+# USE_PAST_GRADES = False
+FEATURES = [
     "age",
     "sex",
     "address",
@@ -48,11 +48,11 @@ CATEGORICAL_FEATURES = [
     "higher",
 ]
 
-FEATURES = (
-    ALL_FEATURES
-    if USE_PAST_GRADES
-    else [feature for feature in ALL_FEATURES if feature not in ["G1", "G2"]]
-)
+# FEATURES = (
+#     ALL_FEATURES
+#     if USE_PAST_GRADES
+#     else [feature for feature in ALL_FEATURES if feature not in ["G1", "G2"]]
+# )
 
 NUMERIC_FEATURES = [
     feature for feature in FEATURES if feature not in CATEGORICAL_FEATURES

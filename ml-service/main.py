@@ -39,12 +39,14 @@ def to_level(raw, table, name):
 
 def grade_from_score(score):
     if score >= 90:
-        return "A"
+        return "S"
     if score >= 80:
-        return "B"
+        return "A"
     if score >= 70:
-        return "C"
+        return "B"
     if score >= 60:
+        return "C"
+    if score >= 50:
         return "D"
     return "F"
 

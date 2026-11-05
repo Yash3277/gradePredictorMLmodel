@@ -529,16 +529,22 @@ const Home = () => {
   const scoreOutOf20 = (percentage / 5).toFixed(1)
   const sgpa = Math.min(10, percentage / 10).toFixed(1)
 
-  let riskMessage = 'Low risk — excellent academic outlook.'
-  let riskClassName = 'low-risk'
+  let riskMessage = 'No risk — excellent academic performance predicted.'
+let riskClassName = 'no-risk'
 
-  if (percentage < 60) {
-    riskMessage = 'High risk — focused improvement is recommended.'
-    riskClassName = 'high-risk'
-  } else if (percentage < 75) {
-    riskMessage = 'Medium risk — passing, but there is room for improvement.'
-    riskClassName = 'medium-risk'
-  }
+if (percentage < 40) {
+  riskMessage = 'Very high risk — immediate improvement is recommended.'
+  riskClassName = 'high-risk'
+} else if (percentage < 50) {
+  riskMessage = 'High risk — focused improvement is recommended.'
+  riskClassName = 'high-risk'
+} else if (percentage < 60) {
+  riskMessage = 'Medium risk — there is room for improvement.'
+  riskClassName = 'medium-risk'
+} else if (percentage < 70) {
+  riskMessage = 'Low risk — maintain consistent academic habits.'
+  riskClassName = 'low-risk'
+}
 
   const keyFactors = [
     `Second term grade: ${studentData.secondTermGrade} / 20`,

@@ -496,3 +496,7 @@
     grid-template-columns: 1fr;
   }
 }
+.no-risk {
+  color: #0b7a43;
+  background-color: #e5f9ed;
+}

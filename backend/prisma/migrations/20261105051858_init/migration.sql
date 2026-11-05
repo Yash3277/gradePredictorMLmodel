@@ -1,16 +1,18 @@
 -- CreateTable
 CREATE TABLE "User" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Student" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "studyHours" REAL NOT NULL,
+    "id" SERIAL NOT NULL,
+    "studyHours" DOUBLE PRECISION NOT NULL,
     "homeCondition" TEXT NOT NULL,
     "parentalPressure" TEXT NOT NULL,
     "age" INTEGER NOT NULL DEFAULT 17,
@@ -31,23 +33,31 @@ CREATE TABLE "Student" (
     "goingOutWithFriends" INTEGER NOT NULL DEFAULT 3,
     "weekdayAlcoholConsumption" INTEGER NOT NULL DEFAULT 1,
     "weekendAlcoholConsumption" INTEGER NOT NULL DEFAULT 1,
-    "firstTermGrade" REAL NOT NULL DEFAULT 0,
-    "secondTermGrade" REAL NOT NULL DEFAULT 0,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "firstTermGrade" DOUBLE PRECISION NOT NULL DEFAULT 0,
+    "secondTermGrade" DOUBLE PRECISION NOT NULL DEFAULT 0,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Student_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Prediction" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "score" REAL NOT NULL,
+    "id" SERIAL NOT NULL,
+    "score" DOUBLE PRECISION NOT NULL,
     "grade" TEXT NOT NULL,
     "batchId" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "userId" INTEGER NOT NULL,
     "studentId" INTEGER NOT NULL,
-    CONSTRAINT "Prediction_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "Prediction_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "Student" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+
+    CONSTRAINT "Prediction_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- AddForeignKey
+ALTER TABLE "Prediction" ADD CONSTRAINT "Prediction_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Prediction" ADD CONSTRAINT "Prediction_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "Student"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
